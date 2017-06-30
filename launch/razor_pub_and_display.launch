@@ -1,0 +1,12 @@
+<launch>
+  <arg name="razor_config_file" default="$(find nautonomous_sensor_imu_razor)/config/my_razor.yaml"/>
+  
+  <arg name="imu_topic" default="imu_topic" />
+  
+  <node pkg="nautonomous_sensor_imu_razor" type="imu_node.py" name="imu_node" output="screen">
+    <rosparam file="$(arg razor_config_file)" command="load"/>
+    <remap from="imu_topic" to="$(arg imu_topic)" />
+  </node>
+  <node pkg="nautonomous_sensor_imu_razor" type="display_3D_visualization.py" name="display_3D_visualization_node" output="screen">
+  </node>
+</launch>

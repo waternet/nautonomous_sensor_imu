@@ -1,8 +1,8 @@
 <package>
-  <name>nautonomous_sensor_imu</name>
+  <name>nautonomous_sensor_imu_razor</name>
   <version>1.1.1</version>
   <description>
-     nautonomous_sensor_imu is a package that provides a ROS driver
+     nautonomous_sensor_imu_razor is a package that provides a ROS driver
      for the Sparkfun Razor IMU 9DOF. It also provides Arduino
      firmware that runs on the Razor board, and which must be
      installed on the Razor board for the system to work. A node
@@ -31,5 +31,4 @@
   <run_depend>python-serial</run_depend>
   <run_depend>dynamic_reconfigure</run_depend>
 </package>
-
 

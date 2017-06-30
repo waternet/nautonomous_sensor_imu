@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(nautonomous_sensor_imu)
+project(nautonomous_sensor_imu_razor)
 
 find_package(catkin REQUIRED COMPONENTS dynamic_reconfigure)
 
