@@ -1,6 +1,0 @@
-<launch>
-
-  <node pkg="nautonomous_sensor_imu" type="display_3D_visualization.py" name="display_3D_visualization_node" output="screen">
-  </node>
-  
-</launch>

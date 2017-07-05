@@ -37,7 +37,7 @@ import sys
 from sensor_msgs.msg import Imu
 from tf.transformations import quaternion_from_euler
 from dynamic_reconfigure.server import Server
-from nautonomous_sensor_imu.cfg import imuConfig
+from nautonomous_sensor_imu_razor.cfg import imuConfig
 from diagnostic_msgs.msg import DiagnosticArray, DiagnosticStatus, KeyValue
 
 degrees2rad = math.pi/180.0
@@ -54,7 +54,7 @@ def reconfig_callback(config, level):
 
 rospy.init_node("razor_node")
 #We only care about the most recent measurement, i.e. queue_size=1
-pub = rospy.Publisher('imu', Imu, queue_size=1)
+pub = rospy.Publisher('imu_topic', Imu, queue_size=1)
 srv = Server(imuConfig, reconfig_callback)  # define dynamic_reconfigure callback
 diag_pub = rospy.Publisher('diagnostics', DiagnosticArray, queue_size=1)
 diag_pub_time = rospy.get_time();
@@ -255,7 +255,7 @@ while not rospy.is_shutdown():
     imuMsg.orientation.z = q[2]
     imuMsg.orientation.w = q[3]
     imuMsg.header.stamp= rospy.Time.now()
-    imuMsg.header.frame_id = 'base_imu_link'
+    imuMsg.header.frame_id = 'imu_link'
     imuMsg.header.seq = seq
     seq = seq + 1
     pub.publish(imuMsg)

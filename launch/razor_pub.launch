@@ -1,0 +1,22 @@
+<launch>
+
+	<arg name="rosbag_enabled" default="false"/>
+	<arg name="rosbag_prefix_url" default="/tmp"/>
+
+  	<arg name="razor_config_file" default="$(find nautonomous_sensor_imu_razor)/config/razor.yaml"/>
+
+	<arg name="imu_topic" default="imu_topic" />
+
+	<node pkg="nautonomous_sensor_imu_razor" type="imu_node.py" name="imu_node" output="screen">
+
+		<!-- Parameters -->
+		<rosparam file="$(arg razor_config_file)" command="load"/>
+			
+		<!-- Outputs -->
+		<remap from="imu_topic" to="$(arg imu_topic)" />
+
+	</node>
+
+	<node pkg="rosbag" type="record" name="rosbag_imu_razor" args="record -o $(arg rosbag_prefix_url)/imu/razor $(arg imu_topic)" output="screen" if="$(arg rosbag_enabled)"/>
+        
+</launch>
